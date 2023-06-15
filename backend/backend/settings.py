@@ -37,10 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'fine_tuning_chatbot',
     'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'fine_tuning_chatbot',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
