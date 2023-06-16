@@ -13,7 +13,7 @@ router = DefaultRouter()
 router.register(r'fine_tuned_models', FineTunedModelViewSet)
 router.register(r'training_data', TrainingDataViewSet)
 
-jsonl_patterns = [
+openai_patterns = [
     path('convert/<int:finetuned_model_id>/', convert_jsonl_file, name='convert_jsonl_file'),
     path('upload/<int:finetuned_model_id>/', upload_jsonl_file, name='upload_jsonl_file'),
     path('create/<int:finetuned_model_id>/', create_finetune, name='create_finetune'),
@@ -22,5 +22,5 @@ jsonl_patterns = [
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('dataset/', include(jsonl_patterns)),
+    path('openai/', include(openai_patterns)),
 ]

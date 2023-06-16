@@ -32,8 +32,6 @@ class TrainingDataViewSet(viewsets.ModelViewSet):
     serializer_class = TrainingDataSerializer
 
 
-
-
 def create_and_save_jsonl(finetuned_model_id):
     # Query all training data related to the fine-tuned model
     training_data = TrainingData.objects.filter(fine_tuned_model_id=finetuned_model_id)
@@ -49,6 +47,7 @@ def create_and_save_jsonl(finetuned_model_id):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def convert_jsonl_file(request, finetuned_model_id):
     try:
         # Check if the FineTunedModel exists
@@ -74,6 +73,7 @@ def convert_jsonl_file(request, finetuned_model_id):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def upload_jsonl_file(request, finetuned_model_id):
     try:
         # Check if the FineTunedModel exists
@@ -109,6 +109,7 @@ from rest_framework import status
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def create_finetune(request, finetuned_model_id):
     try:
         # Get the fine-tuned model
@@ -135,6 +136,7 @@ def create_finetune(request, finetuned_model_id):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def retrieve_finetune(request, finetuned_model_id):
     try:
         # Get the fine-tuned model
