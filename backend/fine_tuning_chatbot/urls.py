@@ -3,7 +3,6 @@ from rest_framework.routers import DefaultRouter
 from .views import (
     FineTunedModelViewSet, 
     TrainingDataViewSet, 
-    TrainingDataMetadataViewSet, 
     convert_jsonl_file, 
     upload_jsonl_file,
     create_finetune,
@@ -13,7 +12,6 @@ from .views import (
 router = DefaultRouter()
 router.register(r'fine_tuned_models', FineTunedModelViewSet)
 router.register(r'training_data', TrainingDataViewSet)
-router.register(r'training_metadata', TrainingDataMetadataViewSet)
 
 jsonl_patterns = [
     path('convert/<int:finetuned_model_id>/', convert_jsonl_file, name='convert_jsonl_file'),

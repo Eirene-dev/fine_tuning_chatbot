@@ -11,8 +11,8 @@ import os
 import json
 import openai
 
-from .models import FineTunedModel, TrainingData, TrainingDataMetadata
-from .serializers import FineTunedModelSerializer, TrainingDataSerializer, TrainingDataMetadataSerializer
+from .models import FineTunedModel, TrainingData
+from .serializers import FineTunedModelSerializer, TrainingDataSerializer
 
 
 @api_view(['GET'])
@@ -32,10 +32,6 @@ class TrainingDataViewSet(viewsets.ModelViewSet):
     serializer_class = TrainingDataSerializer
 
 
-class TrainingDataMetadataViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
-    queryset = TrainingDataMetadata.objects.all()
-    serializer_class = TrainingDataMetadataSerializer
 
 
 def create_and_save_jsonl(finetuned_model_id):

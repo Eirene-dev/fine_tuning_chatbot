@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Your models
 class FineTunedModel(models.Model):
     MODEL_CHOICES = [
         ('ada', 'Ada'),
@@ -22,24 +21,8 @@ class FineTunedModel(models.Model):
         return self.model_name
 
 
-class TrainingDataMetadata(models.Model):
-    name = models.CharField(max_length=255)
-    version = models.CharField(max_length=50)
-    training_date = models.DateField()
-    description = models.TextField()
-    model_architecture = models.CharField(max_length=255)
-    loss_function = models.CharField(max_length=255)
-    optimizer = models.CharField(max_length=255)
-    performance_metrics = models.JSONField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='training_data_metadatas', null=True)
-
-    def __str__(self):
-        return f'{self.name} v{self.version}'
-
-
 class TrainingData(models.Model):
     fine_tuned_model = models.ForeignKey(FineTunedModel, on_delete=models.CASCADE, related_name='training_data')
-    metadata = models.ForeignKey(TrainingDataMetadata, on_delete=models.SET_NULL, null=True, related_name='training_data')
     prompt = models.TextField()
     completion = models.TextField()
     is_fine_tuned = models.BooleanField(default=False)
