@@ -22,5 +22,5 @@ openai_patterns = [
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('openai/', include(openai_patterns)),
+    path('openai/', include((openai_patterns, 'openai'))),
 ]
